@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+
+  /*noinspection ALL*/
+  @font-face {
+    font-family: 'Ubuntu-Regular';
+    src: url(/fonts/Ubuntu-Regular.ttf) format('truetype');
+  }
+
+  /*noinspection ALL*/
+  @font-face {
+    font-family: 'Ubuntu-Bold';
+    src: url(/fonts/Ubuntu-Bold.ttf) format('truetype');
+  }
+}
+
+html,
+body {
+  background-color: #181818 !important;
+  overflow-x: hidden !important;
+}
+
+body {
+  font-family: 'Ubuntu-Regular', 'sans-serif' !important;
+}
+
+.textGradientBase {
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

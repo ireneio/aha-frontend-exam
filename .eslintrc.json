@@ -1,0 +1,63 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:@next/next/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "func-names": "off",
+    "no-process-exit": "off",
+    "object-shorthand": "off",
+    "class-methods-use-this": "off"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": "**/*.+(ts|tsx)",
+      "parser": "@typescript-eslint/parser",
+      "plugins": [
+        "@typescript-eslint/eslint-plugin"
+      ],
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "no-shadow": "off",
+        "default-param-last": "off",
+        "arrow-body-style": "off",
+        "react/no-invalid-html-attribute": "off",
+        "import/order": "off",
+        "react/jsx-props-no-spreading": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "react/require-default-props": "off",
+        "react/prop-types": "off",
+        "react/function-component-definition": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/jsx-filename-extension": "off",
+        "import/extensions": "off",
+        "import/no-unresolved": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@next/next/no-img-element": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "no-use-before-define": [
+          0
+        ],
+        "@typescript-eslint/no-use-before-define": [
+          1
+        ],
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
+}
