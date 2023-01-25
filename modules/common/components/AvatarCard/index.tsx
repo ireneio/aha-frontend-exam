@@ -19,8 +19,8 @@ const Wrapper = styled('div')({
 const Avatar = styled('img')({
   borderRadius: '5px',
   border: '1px solid #F8F8F8',
-  width: '38px',
-  height: '38px',
+  width: '40px',
+  height: '40px',
 });
 
 const WrapperInfo = styled('div')({
@@ -32,6 +32,8 @@ const Name = styled('div')({
   textTransform: 'capitalize',
   fontWeight: 400,
   fontSize: '16px',
+  letterSpacing: '0.15px',
+  lineHeight: '150%',
 });
 
 const Username = styled('div')({
@@ -40,6 +42,8 @@ const Username = styled('div')({
   fontWeight: 400,
   fontSize: '14px',
   opacity: 0.5,
+  letterSpacing: '0.25px',
+  lineHeight: '150%',
 });
 
 const Toolbar = styled('div')({
@@ -47,17 +51,7 @@ const Toolbar = styled('div')({
   textTransform: 'capitalize',
 });
 
-const Divider = styled('div')({
-  marginTop: '20px',
-});
-
-const AvatarCard = ({
-  displayName,
-  username,
-  following,
-  avatarLink,
-  enableDivider = false,
-}: Props) => {
+const AvatarCard = ({ displayName, username, following, avatarLink }: Props) => {
   const appChipVariant = following ? 'primary' : 'outlined';
   const appChipText: AppChipText = following ? 'following' : 'follow';
 
@@ -77,7 +71,6 @@ const AvatarCard = ({
           <AppChip variant={appChipVariant}>{appChipText}</AppChip>
         </Toolbar>
       </Wrapper>
-      {enableDivider && <Divider />}
     </div>
   );
 };

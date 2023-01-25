@@ -1,8 +1,8 @@
-import Loading from '../TagsCardLoading';
 import AppCardSubtitle from '../../../common/components/AppCardSubtitle';
 import AppCardTitle from '../../../common/components/AppCardTitle';
 import SearchTag from '../Tag';
 import { styled } from '@mui/system';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 interface Props {
   tag: string;
@@ -12,7 +12,6 @@ interface Props {
 
 const Wrapper = styled('div')({
   position: 'relative',
-  // width: '150px'
 });
 
 const Accordion = styled('div')({
@@ -21,15 +20,14 @@ const Accordion = styled('div')({
   borderRadius: '10px',
   minHeight: '150px',
   minWidth: '150px',
-  position: 'relative',
 });
 
 const WrapperSearchTag = styled('div')({
   position: 'absolute',
-  left: '14px',
-  bottom: '70px',
+  left: 10,
+  bottom: 64,
   zIndex: 2,
-  right: '14px',
+  right: 10,
 });
 
 const Subtitle = styled('span')({
@@ -37,16 +35,21 @@ const Subtitle = styled('span')({
 });
 
 const TagsCard = ({ tag, title, subtitle }: Props) => {
+  const theme = useTheme();
+  const isClientAboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <Wrapper data-cid="TagsCard">
       <Accordion className="aspect-square" />
       <WrapperSearchTag>
         <SearchTag>{tag}</SearchTag>
       </WrapperSearchTag>
-      <AppCardTitle>{title}</AppCardTitle>
-      <AppCardSubtitle>
-        {subtitle} <Subtitle>questions</Subtitle>
-      </AppCardSubtitle>
+      <div className="mt-[9px] xl:mt-[12px]">
+        <AppCardTitle>{title}</AppCardTitle>
+        <AppCardSubtitle>
+          {subtitle} <Subtitle>{isClientAboveMobile ? 'results' : 'questions'}</Subtitle>
+        </AppCardSubtitle>
+      </div>
     </Wrapper>
   );
 };

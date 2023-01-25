@@ -8,7 +8,6 @@ interface Props {
   value: TabValue;
   tabs: TabItem[];
   children: ReactNode | ReactNode[];
-  enableDivider?: boolean;
 }
 
 interface TabItem {
@@ -23,24 +22,41 @@ const CustomTabs = styled(Tabs)(() => {
     left: 0,
     right: 0,
     width: '100%',
-    paddingTop: 32,
     backgroundColor: '#181818',
     zIndex: 2,
+    borderBottom: '2px solid #1F1F1F',
+    marginTop: 2,
     '& .MuiTabs-indicator': {
+      zIndex: 3,
+      // bottom: -2,
       backgroundColor: '#ffffff',
       height: '2px',
-    },
-    '& .MuiTabs-flexContainer': {
-      borderBottom: '2px solid #1f1f1f',
     },
   };
 });
 
-const CustomTab = styled(Tab)(({ theme }) => {
+const CustomTab = styled(Tab)(() => {
   return {
     color: '#929292',
     backgroundColor: '#181818',
-    // borderBottom: '2px solid #1f1f1f',
+    fontWeight: 700,
+    fontSize: 16,
+    fontFamily: 'Ubuntu-Bold',
+    textTransform: 'capitalize',
+    letterSpacing: '0.15px',
+    position: 'relative',
+    minHeight: 0,
+    padding: 0,
+    paddingTop: 32,
+    paddingBottom: 11,
+    '&:after': {
+      content: '',
+      width: '400px',
+      position: 'absolute',
+      bottom: 0,
+      height: 2,
+      backgroundColor: '#1F1F1F',
+    },
     '&.Mui-selected': {
       color: '#ffffff',
     },
@@ -55,10 +71,10 @@ const CustomTab = styled(Tab)(({ theme }) => {
 });
 
 const Divider = styled('div')({
-  marginTop: '35px',
+  marginTop: '28px',
 });
 
-const TabGroup = ({ onChange, value, tabs, children, enableDivider = true }: Props) => {
+const TabGroup = ({ onChange, value, tabs, children }: Props) => {
   const tabPanelContent = useMemo(() => {
     const idx = tabs.findIndex((tab) => tab.value === value);
 
@@ -88,7 +104,7 @@ const TabGroup = ({ onChange, value, tabs, children, enableDivider = true }: Pro
           );
         })}
       </CustomTabs>
-      {enableDivider && <Divider />}
+      <Divider />
       {tabPanelContent}
     </div>
   );

@@ -16,15 +16,13 @@ enum TabsEnum {
 const Wrapper = styled('div')(({ theme }) => {
   return {
     display: 'none',
-    overflow: 'auto',
-    paddingLeft: '16px',
-    paddingRight: '16px',
     [theme.breakpoints.only('xl')]: {
+      overflow: 'auto',
       display: 'block',
       position: 'fixed',
       top: 0,
       right: 0,
-      width: '375px',
+      width: 375,
       height: '100%',
     },
   };
@@ -87,11 +85,11 @@ const FollowerList = () => {
 
   return (
     <Wrapper data-cid="FollowerList">
-      <TabGroup onChange={(value: TabsEnum) => setTab(value)} value={tab} tabs={tabs} enableDivider>
-        {tabs.map((item, index) => {
+      <TabGroup onChange={(value: TabsEnum) => setTab(value)} value={tab} tabs={tabs}>
+        {tabs.map((item) => {
           return (
-            <div className="overflow-auto h-full" key={item.value}>
-              {item.data.map(({ username, isFollowing, name, avater }: User) => {
+            <div className="flex flex-col gap-[18px] px-[16px]" key={item.value}>
+              {item.data.map(({ username, isFollowing, name }: User) => {
                 return (
                   <AvatarCard
                     key={username}
@@ -104,7 +102,10 @@ const FollowerList = () => {
                   />
                 );
               })}
-              <div ref={ref} />
+              <div
+                ref={ref}
+                className={followersLoading || followingLoading ? 'hidden' : 'block'}
+              />
               {followersLoading || followingLoading ? <Loading /> : null}
             </div>
           );

@@ -5,7 +5,7 @@ const Wrapper = styled('div')({
   color: '#ffffff',
   fontWeight: 'bold',
   fontSize: '24px',
-  border: '3px solid #ffffff',
+  border: '4px solid #ffffff',
   borderRadius: '6px',
   paddingLeft: '10px',
   paddingRight: '10px',
@@ -14,6 +14,8 @@ const Wrapper = styled('div')({
   textOverflow: 'ellipsis',
   textTransform: 'capitalize',
   wordBreak: 'break-all',
+  paddingTop: 3,
+  paddingBottom: 3,
 });
 
 const SearchTag = ({ children }: { children: ReactNode }) => {

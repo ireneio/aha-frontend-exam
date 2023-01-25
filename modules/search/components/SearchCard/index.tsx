@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { useMediaQuery, useTheme, styled } from '@mui/material';
 import Image from 'next/image';
 import AppCardSubtitle from '../../../common/components/AppCardSubtitle';
 import AppCardTitle from '../../../common/components/AppCardTitle';
@@ -12,12 +12,6 @@ interface Props {
 
 const Wrapper = styled('div')({
   width: '100%',
-  marginBottom: '40px',
-});
-
-const WrapperImg = styled('div')({
-  position: 'relative',
-  minHeight: '222.67px',
 });
 
 const Img = styled(Image)({
@@ -33,12 +27,23 @@ const handleImageError = (e: any) => {
 };
 
 const SearchCard = ({ src, alt = '', title, subtitle }: Props) => {
+  const theme = useTheme();
+  const isClientAboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+
   return (
     <Wrapper data-cid="SearchCard">
-      <WrapperImg>
-        <Img src={src} alt={alt} layout="fill" objectFit="contain" onError={(e: any) => handleImageError(e)} />
-      </WrapperImg>
-      <AppCardTitle>{title}</AppCardTitle>
+      <Img
+        src={src}
+        alt={alt}
+        layout={isClientAboveMobile ? 'fixed' : 'responsive'}
+        width={219}
+        height={146}
+        objectFit="contain"
+        onError={(e: any) => handleImageError(e)}
+      />
+      <div className="mt-[20.33px] xl:mt-0">
+        <AppCardTitle>{title}</AppCardTitle>
+      </div>
       <AppCardSubtitle>by {subtitle}</AppCardSubtitle>
     </Wrapper>
   );

@@ -15,6 +15,12 @@
     font-family: 'Ubuntu-Bold';
     src: url(/fonts/Ubuntu-Bold.ttf) format('truetype');
   }
+
+  /*noinspection ALL*/
+  @font-face {
+    font-family: 'NotoSans-Regular';
+    src: url(/fonts/NotoSans-Regular.ttf) format('truetype');
+  }
 }
 
 html,

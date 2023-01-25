@@ -23,7 +23,7 @@ const Logo = styled('h1')({
   // make clickable area larger
   paddingLeft: '15px',
   paddingRight: '15px',
-  marginLeft: '-20px',
+  marginLeft: '-15px',
   backgroundImage: 'linear-gradient(270deg, #FFD25F 0.13%, #FF5C01 100%)',
   fontSize: '13px',
   textTransform: 'uppercase',
@@ -42,12 +42,13 @@ const Title = styled('h1')({
   fontSize: '24px',
   fontWeight: 400,
   color: '#ffffff',
+  marginLeft: 4,
 });
 
 const BackButtonWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
-  marginLeft: '-21px',
+  marginLeft: '-19px',
   height: '70px',
 });
 

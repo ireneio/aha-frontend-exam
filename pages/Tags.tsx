@@ -27,9 +27,11 @@ const Wrapper = styled('div')(({ theme }) => {
     paddingLeft: '25px',
     paddingRight: '25px',
     paddingBottom: '48px',
+    paddingTop: 19.5,
     [theme.breakpoints.up('sm')]: {
-      paddingLeft: 126,
-      paddingRight: 46,
+      paddingTop: 77,
+      paddingLeft: 337,
+      paddingRight: 257,
     },
   };
 });
@@ -65,13 +67,15 @@ const Tags = () => {
   return (
     <Layout data-cid="Tags" showNav={false}>
       <Wrapper>
-        <AppTitle>tags</AppTitle>
+        <div className="ml-[-4px] xl:ml-0">
+          <AppTitle>tags</AppTitle>
+        </div>
         <AppDivider top={24} />
-        <div className="grid grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5 gap-x-[24px] gap-y-[24px] xl:gap-y-[36px]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-x-[24px] gap-y-[24px] xl:gap-y-[36px]">
           {dataDisplay.map(({ key, tag, title, subtitle }) => {
             return <TagsCard key={key} tag={tag} title={title} subtitle={subtitle} />;
           })}
-          {isValidating ? [1, 2, 3, 4].map((val) => <TagsCardLoading key={val} />) : null}
+          {isValidating ? [1, 2, 3, 4, 5].map((val) => <TagsCardLoading key={val} />) : null}
           <div ref={lastAnchor} />
         </div>
       </Wrapper>

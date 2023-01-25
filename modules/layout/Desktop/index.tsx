@@ -1,12 +1,9 @@
 import { styled } from '@mui/system';
 import { ReactNode } from 'react';
 import AppSidebar from '../../common/containers/AppSidebar';
-import FollowerList from '../../follow/containers/FollowerList';
 
 const Container = styled('div')({
-  paddingTop: '54px',
-  paddingLeft: '211px',
-  paddingRight: '211px',
+  minHeight: '100vh',
 });
 
 const Desktop = ({ children }: { children: ReactNode }) => {

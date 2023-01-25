@@ -19,14 +19,15 @@ import { UserApiDto } from '@/modules/common/types/api';
 
 const Wrapper = styled('div')({
   marginRight: 0,
-  paddingLeft: '25px',
-  paddingRight: '25px',
+  paddingLeft: 20,
+  paddingRight: 20,
   [theme.breakpoints.up('sm')]: {
-    paddingLeft: 0,
+    marginTop: 92,
+    paddingLeft: 210,
     paddingRight: 0,
   },
   [theme.breakpoints.only('xl')]: {
-    marginRight: 130 + 375,
+    paddingRight: 505,
   },
 });
 
@@ -118,21 +119,23 @@ const Result = () => {
   return (
     <Layout data-cid="Result" showNav={false}>
       <Wrapper>
-        <AppTitle>
-          {isClientAboveMobile && (
-            <div className="absolute left-[-50px]">
-              <BackButton onClick={handleOnBackButtonClick} />
-            </div>
-          )}
-          <div>results</div>
-        </AppTitle>
+        <div className="mt-[20px] xl:mt-0 xl:ml-[7.5px]">
+          <AppTitle>
+            {isClientAboveMobile && (
+              <div className="absolute left-[-62.5px]">
+                <BackButton onClick={handleOnBackButtonClick} />
+              </div>
+            )}
+            <div>results</div>
+          </AppTitle>
+        </div>
         <AppDivider top={24} />
         <div
           className={twMerge('text-[#FFF]', !userData.length && !isValidating ? 'block' : 'hidden')}
         >
           No Results Found.
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[34px]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[34px] gap-y-[31px]">
           {userData.map(({ id, name, username }) => {
             return (
               <div key={id}>
@@ -146,15 +149,13 @@ const Result = () => {
               </div>
             );
           })}
-          <div className={twMerge(isValidating ? 'block' : 'hidden')}>
-            <SearchCardLoading />
-          </div>
-          <div className={twMerge(isValidating ? 'xl:block' : 'hidden')}>
-            <SearchCardLoading />
-          </div>
-          <div className={twMerge(isValidating ? 'xl:block' : 'hidden')}>
-            <SearchCardLoading />
-          </div>
+          {[!isClientAboveMobile ? 1 : 1, 2, 3, 4, 5, 6].map((skeleton) => {
+            return (
+              <div key={skeleton} className={twMerge(isValidating ? 'block' : 'hidden')}>
+                <SearchCardLoading />
+              </div>
+            );
+          })}
         </div>
         <div ref={lastAnchor} className="invisible">
           a

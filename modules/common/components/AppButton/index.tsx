@@ -5,6 +5,7 @@ import React from 'react';
 const CustomButton = styled(Button)({
   height: '38px',
   width: '100%',
+  fontFamily: 'Ubuntu-bold',
   fontWeight: 'bold',
   fontSize: '14px',
   textTransform: 'uppercase',

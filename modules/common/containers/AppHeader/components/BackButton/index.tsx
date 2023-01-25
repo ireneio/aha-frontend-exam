@@ -1,22 +1,19 @@
-import { Button, styled } from '@mui/material';
-import ChevronLeftOutlinedIcon from '@mui/icons-material/ChevronLeftOutlined';
+import { styled } from '@mui/material';
 import { TouchEventHandler } from 'react';
 
-const Wrapper = styled(Button)({
+const Wrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   border: 'none',
   backgroundColor: 'transparent',
-  paddingTop: '25px',
-  paddingBottom: '25px',
-  paddingRight: '19.88px',
+  padding: 15,
 });
 
 const BackButton = ({ onClick }: { onClick: TouchEventHandler }) => {
   return (
     <Wrapper onClick={onClick}>
-      <ChevronLeftOutlinedIcon sx={{ fontSize: 30, color: '#ffffff' }} />
+      <img src="/images/chevron_left.svg" alt="" className="w-[21.67px] h-[21.67px]" />
     </Wrapper>
   );
 };

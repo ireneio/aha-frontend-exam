@@ -16,7 +16,7 @@ export type FetcherConfig = _FetcherConfig | string;
 
 export const fetcher = (config: FetcherConfig) => {
   if (typeof config !== 'string') {
-    const { method, url, query, ...rest } = config;
+    const { method, url, query } = config;
     return axiosInstance
       .request({
         method,

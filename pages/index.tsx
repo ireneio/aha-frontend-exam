@@ -16,14 +16,15 @@ const Wrapper = styled('div')(({ theme }) => ({
   position: 'relative',
   paddingLeft: '20px',
   paddingRight: '20px',
-  height: 'calc(100vh - 87px)',
+  height: 'calc(100vh - 70px)',
   [theme.breakpoints.up('sm')]: {
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingBottom: '87px',
+    paddingLeft: 210,
+    paddingRight: 210,
+    height: 'calc(100vh - 54px)',
+    paddingTop: 54,
   },
-  [theme.breakpoints.only('xl')]: {
-    marginRight: 130 + 375,
+  [theme.breakpoints.up('xl')]: {
+    paddingRight: 505,
   },
 }));
 
@@ -47,21 +48,24 @@ const CounterUnit = styled('div')({
 
 const SliderWrapper = styled('div')(({ theme }) => ({
   paddingRight: 12,
+  marginLeft: -3,
   [theme.breakpoints.up('lg')]: {
+    marginLeft: 0,
     paddingRight: 0,
   },
 }));
 
 const Toolbar = styled('div')(({ theme }) => ({
   position: 'absolute',
-  bottom: 0,
+  bottom: 93,
   left: 0,
   width: '100%',
   height: 'auto',
-  paddingBottom: '66px',
   paddingLeft: '20px',
   paddingRight: '20px',
   [theme.breakpoints.up('sm')]: {
+    bottom: 38.5,
+    left: 210,
     paddingLeft: 0,
     paddingRight: 0,
     paddingBottom: 0,
@@ -99,39 +103,42 @@ const Home = () => {
 
   return (
     <Layout>
-      <div data-cid="Home">
-        <Wrapper>
-          <AppTitle>search</AppTitle>
-          {!isClientAboveMobile && <AppDivider top={16} />}
-          {isClientAboveMobile && <AppDivider top={20} />}
-          <AppInput placeholder="Keyword" onChange={handleInputChange} />
-          {isClientAboveMobile && <AppDivider enableLine top={30} bottom={30} />}
-          {!isClientAboveMobile && <AppDivider top={28} />}
-          <AppTitle># of results per page</AppTitle>
-          <AppDivider top={16} />
-          <CounterWrapper>
-            <CounterDisplay>{pageSize}</CounterDisplay>
-            <CounterUnit>results</CounterUnit>
-          </CounterWrapper>
-          <SliderWrapper>
-            <SearchSlider value={pageSize} onChange={handlePageSizeUpdate} />
-          </SliderWrapper>
-          {!isClientAboveMobile && (
-            <Toolbar>
-              <AppDivider enableLine bottom={80} />
+      <Wrapper>
+        <AppTitle>
+          <div className="text-[24px]">search</div>
+        </AppTitle>
+        {!isClientAboveMobile && <AppDivider top={17} />}
+        {isClientAboveMobile && <AppDivider top={20} />}
+        <AppInput placeholder="Keyword" onChange={handleInputChange} />
+        {isClientAboveMobile && <AppDivider enableLine top={38} bottom={30} />}
+        {!isClientAboveMobile && <AppDivider top={30} />}
+        <AppTitle>
+          <div className="text-[24px]"># of results per page</div>
+        </AppTitle>
+        <AppDivider top={8} />
+        <CounterWrapper>
+          <CounterDisplay>{pageSize}</CounterDisplay>
+          <CounterUnit>results</CounterUnit>
+        </CounterWrapper>
+        <AppDivider top={15} />
+        <SliderWrapper>
+          <SearchSlider value={pageSize} onChange={handlePageSizeUpdate} />
+        </SliderWrapper>
+        {!isClientAboveMobile && (
+          <Toolbar>
+            <AppDivider enableLine bottom={80} />
+            <AppButton onClick={() => handleSearch()}>search</AppButton>
+          </Toolbar>
+        )}
+        {isClientAboveMobile && (
+          <Toolbar>
+            <div className="w-[343px]">
               <AppButton onClick={() => handleSearch()}>search</AppButton>
-            </Toolbar>
-          )}
-          {isClientAboveMobile && (
-            <Toolbar>
-              <div className="w-[343px]">
-                <AppButton onClick={() => handleSearch()}>search</AppButton>
-              </div>
-            </Toolbar>
-          )}
-        </Wrapper>
-        <FollowerList />
-      </div>
+            </div>
+          </Toolbar>
+        )}
+      </Wrapper>
+      <FollowerList />
     </Layout>
   );
 };

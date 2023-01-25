@@ -9,6 +9,7 @@ const Wrapper = styled('div')({
   position: 'fixed',
   top: 0,
   left: 0,
+  zIndex: 2,
   backgroundColor: '#1b1b1b',
   minHeight: '100vh',
   width: '80px',
@@ -23,9 +24,8 @@ const Logo = styled('h1')({
   textTransform: 'uppercase',
   cursor: 'pointer',
   fontFamily: 'Ubuntu-Bold',
-  fontStyle: 'normal',
-  paddingTop: '37px',
-  paddingBottom: '45px',
+  paddingTop: '34px',
+  paddingBottom: '27px',
   paddingLeft: '22px',
   paddingRight: '22px',
   letterSpacing: '-0.05em',
@@ -84,41 +84,39 @@ const AppSidebar = () => {
 
   return (
     <Wrapper>
-      <Logo className="textGradientBase" onClick={handleGoHome}>
+      <Logo className="textGradientBase" onClick={() => handleGoHome()}>
         logo
       </Logo>
-      {SIDEBAR_ITEMS.map(
-        ({ path, clickHandler, label, disabledCondition, notification }, index) => {
-          return (
-            <Touchable
-              key={path}
-              onClick={clickHandler}
-              className={cx(
-                'flex flex-row flex-wrap items-center justify-center pb-[25px] relative',
-                {
-                  [styles.inactive]: disabledCondition,
-                  [styles.active]: !disabledCondition,
-                }
-              )}
-            >
-              {notification && disabledCondition ? (
-                <div className="bg-[#00D1FF] w-[7px] h-[7px] rounded-full absolute right-[23px] top-[-6px]" />
-              ) : null}
-              <img
-                src={
-                  disabledCondition
-                    ? '/images/fa-solid_pencil-ruler-grey.svg'
-                    : '/images/fa-solid_pencil-ruler.svg'
-                }
-                alt=""
-                className="w-[24px] h-[24px]"
-              />
-              {!disabledCondition && <TouchableText>{label}</TouchableText>}
-              {disabledCondition && <div className="h-[18px] w-full" />}
-            </Touchable>
-          );
-        }
-      )}
+      {SIDEBAR_ITEMS.map(({ path, clickHandler, label, disabledCondition, notification }) => {
+        return (
+          <Touchable
+            key={path}
+            onClick={() => clickHandler()}
+            className={cx(
+              'flex flex-row flex-wrap items-center justify-center py-[12.7px] relative',
+              {
+                [styles.inactive]: disabledCondition,
+                [styles.active]: !disabledCondition,
+              }
+            )}
+          >
+            {notification && disabledCondition ? (
+              <div className="bg-[#00D1FF] w-[6px] h-[6px] rounded-full absolute right-[24px] top-[10px] border border-[#1b1b1b]" />
+            ) : null}
+            <img
+              src={
+                disabledCondition
+                  ? '/images/fa-solid_pencil-ruler-grey.svg'
+                  : '/images/fa-solid_pencil-ruler.svg'
+              }
+              alt=""
+              className="w-[24px] h-[24px]"
+            />
+            {!disabledCondition && <TouchableText>{label}</TouchableText>}
+            {disabledCondition && <div className="h-[18px] w-full" />}
+          </Touchable>
+        );
+      })}
     </Wrapper>
   );
 };

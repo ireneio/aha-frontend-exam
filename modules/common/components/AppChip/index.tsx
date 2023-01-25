@@ -1,25 +1,41 @@
 import React from 'react';
-import { Chip, styled } from '@mui/material';
+import { styled } from '@mui/material';
 
 type Variant = 'outlined' | 'primary' | 'default';
 
-const CustomChipOutlined = styled(Chip)({
+const CustomChipOutlined = styled('div')({
   border: '1px solid #ffffff',
   color: '#ffffff',
-  fontWeight: 600,
+  fontWeight: 400,
+  fontFamily: 'NotoSans-Regular',
+  fontSize: 12,
+  lineHeight: '12px',
   cursor: 'pointer',
+  padding: '8px 10px',
+  borderRadius: '20px',
+  '.MuiChip-label': {
+    padding: 0,
+  },
   '&:hover': {
     color: '#121212',
     backgroundColor: '#ffffff',
   },
 });
 
-const CustomChipSolid = styled(Chip)({
+const CustomChipSolid = styled('div')({
   border: '1px solid #ffffff',
   backgroundColor: '#ffffff',
   color: '#121212',
-  fontWeight: 600,
+  fontWeight: 400,
+  fontFamily: 'NotoSans-Regular',
+  fontSize: 12,
+  lineHeight: '12px',
   cursor: 'pointer',
+  padding: '8px 10px',
+  borderRadius: '20px',
+  '.MuiChip-label': {
+    padding: 0,
+  },
   '&:hover': {
     color: '#ffffff',
     backgroundColor: '#121212',
@@ -31,11 +47,10 @@ const AppChip = React.memo(
     const generateComponent = () => {
       switch (variant) {
         case 'outlined':
-          return <CustomChipOutlined label={children} />;
+          return <CustomChipOutlined>{children}</CustomChipOutlined>;
         case 'primary':
-          return <CustomChipSolid label={children} />;
         default:
-          return <Chip label={children} />;
+          return <CustomChipSolid>{children}</CustomChipSolid>;
       }
     };
 
