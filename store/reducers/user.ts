@@ -54,10 +54,18 @@ type Action =
   | {
       type: 'SET_PAGE_SIZE';
       payload: number;
+    }
+  | {
+      type: 'CLEAR_DATA';
     };
 
 export default function userReducer(state: UserState = initialState, action: Action) {
   switch (action.type) {
+    case 'CLEAR_DATA':
+      return {
+        ...state,
+        data: [],
+      };
     case 'SET_DATA':
       return {
         ...state,

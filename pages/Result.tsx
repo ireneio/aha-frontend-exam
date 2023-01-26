@@ -21,10 +21,11 @@ const Wrapper = styled('div')({
   marginRight: 0,
   paddingLeft: 20,
   paddingRight: 20,
+  paddingBottom: 20,
   [theme.breakpoints.up('sm')]: {
     marginTop: 92,
     paddingLeft: 210,
-    paddingRight: 0,
+    paddingRight: 130,
   },
   [theme.breakpoints.only('xl')]: {
     paddingRight: 505,
@@ -76,6 +77,8 @@ const Result = () => {
   );
 
   useEffect(() => {
+    console.log(totalPages);
+
     if (inView && !isValidating && page < totalPages) {
       dispatchStore({
         type: 'SET_PAGINATION',
@@ -88,6 +91,11 @@ const Result = () => {
 
   useEffect(() => {
     if (data) {
+      if (data.page === 1) {
+        dispatchStore({
+          type: 'CLEAR_DATA',
+        });
+      }
       if (data?.data) {
         dispatchStore({
           type: 'SET_DATA',
@@ -135,7 +143,7 @@ const Result = () => {
         >
           No Results Found.
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-x-[34px] gap-y-[31px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[34px] gap-y-[31px]">
           {userData.map(({ id, name, username }) => {
             return (
               <div key={id}>
@@ -157,9 +165,7 @@ const Result = () => {
             );
           })}
         </div>
-        <div ref={lastAnchor} className="invisible">
-          a
-        </div>
+        <div ref={lastAnchor} className="invisible" />
       </Wrapper>
       <FollowerList />
     </Layout>

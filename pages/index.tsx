@@ -19,7 +19,7 @@ const Wrapper = styled('div')(({ theme }) => ({
   height: 'calc(100vh - 70px)',
   [theme.breakpoints.up('sm')]: {
     paddingLeft: 210,
-    paddingRight: 210,
+    paddingRight: 130,
     height: 'calc(100vh - 54px)',
     paddingTop: 54,
   },

@@ -28,14 +28,14 @@ const handleImageError = (e: any) => {
 
 const SearchCard = ({ src, alt = '', title, subtitle }: Props) => {
   const theme = useTheme();
-  const isClientAboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+  const is1440 = useMediaQuery(theme.breakpoints.only('xl'));
 
   return (
     <Wrapper data-cid="SearchCard">
       <Img
         src={src}
         alt={alt}
-        layout={isClientAboveMobile ? 'fixed' : 'responsive'}
+        layout={is1440 ? 'fixed' : 'responsive'}
         width={219}
         height={146}
         objectFit="contain"
