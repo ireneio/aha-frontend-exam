@@ -30,6 +30,10 @@ const Wrapper = styled('div')(({ theme }) => {
     paddingTop: 19.5,
     [theme.breakpoints.up('sm')]: {
       paddingTop: 77,
+      paddingLeft: 210,
+      paddingRight: 130,
+    },
+    [theme.breakpoints.only('xl')]: {
       paddingLeft: 337,
       paddingRight: 257,
     },
@@ -71,7 +75,7 @@ const Tags = () => {
           <AppTitle>tags</AppTitle>
         </div>
         <AppDivider top={24} />
-        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-5 gap-x-[24px] gap-y-[24px] xl:gap-y-[36px]">
+        <div className="grid grid-cols-2 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-5 gap-x-[24px] gap-y-[24px] xl:gap-y-[36px]">
           {dataDisplay.map(({ key, tag, title, subtitle }) => {
             return <TagsCard key={key} tag={tag} title={title} subtitle={subtitle} />;
           })}

@@ -1,10 +1,9 @@
 import { styled } from '@mui/system';
 import { useRouter } from 'next/router';
-import cx from 'classnames';
-import styles from './appSidebar.module.scss';
 import { RouteMap } from '../../types';
 import { useMemo, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import { ButtonBase } from '@mui/material';
 
 const Wrapper = styled('div')({
   position: 'fixed',
@@ -32,11 +31,17 @@ const Logo = styled('h1')({
   letterSpacing: '-0.05em',
 });
 
-const Touchable = styled('div')({
+const Touchable = styled(ButtonBase)({
+  width: '100%',
   height: '100%',
   cursor: 'pointer',
-  paddingLeft: '22px',
-  paddingRight: '22px',
+  padding: '12.7px 22px',
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexWrap: 'wrap',
 });
 
 const TouchableText = styled('div')({
@@ -96,10 +101,6 @@ const AppSidebar = () => {
             <Touchable
               key={path}
               onClick={() => clickHandler()}
-              className={twMerge(
-                'flex flex-row flex-wrap items-center justify-center py-[12.7px] relative',
-                disabledCondition && !isHovered ? 'text-[#8A8A8F]' : 'text-[#FFFFFF]'
-              )}
               onMouseEnter={() => setHoverIdx(index)}
               onMouseLeave={() => setHoverIdx(-1)}
             >
@@ -122,7 +123,12 @@ const AppSidebar = () => {
                   !disabledCondition || isHovered ? 'block' : 'hidden'
                 )}
               />
-              <div className={twMerge(isHovered || !disabledCondition ? 'block' : 'hidden')}>
+              <div
+                className={twMerge(
+                  isHovered || !disabledCondition ? 'block' : 'hidden',
+                  disabledCondition && !isHovered ? 'text-[#8A8A8F]' : 'text-[#FFFFFF]'
+                )}
+              >
                 <TouchableText>{label}</TouchableText>
               </div>
               <div
