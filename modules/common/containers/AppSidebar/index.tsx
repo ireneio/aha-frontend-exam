@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import cx from 'classnames';
 import styles from './appSidebar.module.scss';
 import { RouteMap } from '../../types';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const Wrapper = styled('div')({
   position: 'fixed',
@@ -54,6 +55,7 @@ interface SidebarItem {
 const AppSidebar = () => {
   const router = useRouter();
   const routeActive = router.pathname;
+  const [hoverIdx, setHoverIdx] = useState(-1);
 
   const handleGoHome = () => {
     router.push(RouteMap.Home);
@@ -87,36 +89,52 @@ const AppSidebar = () => {
       <Logo className="textGradientBase" onClick={() => handleGoHome()}>
         logo
       </Logo>
-      {SIDEBAR_ITEMS.map(({ path, clickHandler, label, disabledCondition, notification }) => {
-        return (
-          <Touchable
-            key={path}
-            onClick={() => clickHandler()}
-            className={cx(
-              'flex flex-row flex-wrap items-center justify-center py-[12.7px] relative',
-              {
-                [styles.inactive]: disabledCondition,
-                [styles.active]: !disabledCondition,
-              }
-            )}
-          >
-            {notification && disabledCondition ? (
-              <div className="bg-[#00D1FF] w-[6px] h-[6px] rounded-full absolute right-[24px] top-[10px] border border-[#1b1b1b]" />
-            ) : null}
-            <img
-              src={
-                disabledCondition
-                  ? '/images/fa-solid_pencil-ruler-grey.svg'
-                  : '/images/fa-solid_pencil-ruler.svg'
-              }
-              alt=""
-              className="w-[24px] h-[24px]"
-            />
-            {!disabledCondition && <TouchableText>{label}</TouchableText>}
-            {disabledCondition && <div className="h-[18px] w-full" />}
-          </Touchable>
-        );
-      })}
+      {SIDEBAR_ITEMS.map(
+        ({ path, clickHandler, label, disabledCondition, notification }, index) => {
+          const isHovered = hoverIdx === index;
+          return (
+            <Touchable
+              key={path}
+              onClick={() => clickHandler()}
+              className={twMerge(
+                'flex flex-row flex-wrap items-center justify-center py-[12.7px] relative',
+                disabledCondition && !isHovered ? 'text-[#8A8A8F]' : 'text-[#FFFFFF]'
+              )}
+              onMouseEnter={() => setHoverIdx(index)}
+              onMouseLeave={() => setHoverIdx(-1)}
+            >
+              {notification && disabledCondition ? (
+                <div className="bg-[#00D1FF] w-[6px] h-[6px] rounded-full absolute right-[24px] top-[10px] border border-[#1b1b1b]" />
+              ) : null}
+              <img
+                src="/images/fa-solid_pencil-ruler-grey.svg"
+                alt=""
+                className={twMerge(
+                  'w-[24px] h-[24px]',
+                  disabledCondition && !isHovered ? 'block' : 'hidden'
+                )}
+              />
+              <img
+                src="/images/fa-solid_pencil-ruler.svg"
+                alt=""
+                className={twMerge(
+                  'w-[24px] h-[24px]',
+                  !disabledCondition || isHovered ? 'block' : 'hidden'
+                )}
+              />
+              <div className={twMerge(isHovered || !disabledCondition ? 'block' : 'hidden')}>
+                <TouchableText>{label}</TouchableText>
+              </div>
+              <div
+                className={twMerge(
+                  'h-[18px] w-full',
+                  !isHovered && disabledCondition ? 'block' : 'hidden'
+                )}
+              />
+            </Touchable>
+          );
+        }
+      )}
     </Wrapper>
   );
 };
