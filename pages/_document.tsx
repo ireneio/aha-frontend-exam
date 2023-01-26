@@ -2,7 +2,7 @@ import * as React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
 import createEmotionCache from '../createEmotionCache';
-import theme from '../modules/common/styles/theme';
+import theme from '../styles/theme';
 
 export default class MyDocument extends Document {
   render() {
@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           /> */}
-          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          {/* <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" /> */}
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {/* @ts-ignore */}
           {this.props.emotionStyleTags}

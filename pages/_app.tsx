@@ -4,10 +4,11 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { ThemeProvider } from '@mui/system';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import store from '../store';
-import theme from '../modules/common/styles/theme';
-import '../modules/common/styles/index.css';
+import theme from '../styles/theme';
 import createEmotionCache from '../createEmotionCache';
 import { ReactNode } from 'react';
+
+import '../styles/index.css';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -28,11 +29,6 @@ function App({ Component, pageProps, emotionCache = clientSideEmotionCache }: Ap
             <div data-cid="App">
               <CssBaseline />
               <Component {...pageProps} />
-              <style jsx global>{`
-                body {
-                  background: #181818;
-                }
-              `}</style>
             </div>
           </ThemeProvider>
         </ReduxProvider>

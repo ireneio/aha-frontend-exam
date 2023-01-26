@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '../utils/swr';
 import { useAppDispatch, useAppSelector } from '../store';
-import theme from '../modules/common/styles/theme';
+import theme from '../styles/theme';
 import BackButton from '../modules/common/containers/AppHeader/components/BackButton';
 import { useRouter } from 'next/router';
 import { RouteMap } from '../modules/common/types';
@@ -38,6 +38,7 @@ const Result = () => {
   const { keyword } = useAppSelector((state) => state.user.params);
   const dispatchStore = useAppDispatch();
   const isClientAboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+  const is1440 = useMediaQuery(theme.breakpoints.only('xl'));
   const router = useRouter();
   const { ref: lastAnchor, inView } = useInView();
 
@@ -77,8 +78,6 @@ const Result = () => {
   );
 
   useEffect(() => {
-    console.log(totalPages);
-
     if (inView && !isValidating && page < totalPages) {
       dispatchStore({
         type: 'SET_PAGINATION',
@@ -146,7 +145,7 @@ const Result = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[34px] gap-y-[31px]">
           {userData.map(({ id, name, username }) => {
             return (
-              <div key={id}>
+              <div key={id + username}>
                 <SearchCard
                   // avatar does not show
                   src="/images/dog.png"
@@ -167,7 +166,7 @@ const Result = () => {
         </div>
         <div ref={lastAnchor} className="invisible" />
       </Wrapper>
-      <FollowerList />
+      {is1440 ? <FollowerList /> : null}
     </Layout>
   );
 };

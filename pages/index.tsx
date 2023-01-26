@@ -79,6 +79,7 @@ const Home = () => {
   const router = useRouter();
   const theme = useTheme();
   const isClientAboveMobile = useMediaQuery(theme.breakpoints.up('sm'));
+  const is1440 = useMediaQuery(theme.breakpoints.only('xl'));
 
   const { getValues, setValue } = useForm({
     mode: 'onChange',
@@ -138,7 +139,7 @@ const Home = () => {
           </Toolbar>
         )}
       </Wrapper>
-      <FollowerList />
+      {is1440 ? <FollowerList /> : null}
     </Layout>
   );
 };

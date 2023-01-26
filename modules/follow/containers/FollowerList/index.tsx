@@ -15,10 +15,8 @@ enum TabsEnum {
 
 const Wrapper = styled('div')(({ theme }) => {
   return {
-    display: 'none',
     [theme.breakpoints.only('xl')]: {
       overflow: 'auto',
-      display: 'block',
       position: 'fixed',
       top: 0,
       right: 0,
